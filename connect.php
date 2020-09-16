@@ -11,7 +11,7 @@
         die("Connection failed: ".$conn->connect_error);
     }
     
-    $sql = "SELECT id, firstname, lastname FROM MyGuests WHERE lastname ='Doe'";
+    $sql = "SELECT id, firstname, lastname FROM MyGuests ORDER BY lastname";
     $result = $conn->query($sql);
 
     if($result->num_rows >0){
