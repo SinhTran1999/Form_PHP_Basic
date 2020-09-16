@@ -11,18 +11,12 @@
         die("Connection failed: ".$conn->connect_error);
     }
     
-    $sql = "SELECT id, firstname, lastname FROM MyGuests ORDER BY lastname";
-    $result = $conn->query($sql);
+    $sql = "DELETE FROM MyGuests WHERE id=3";
 
-    if($result->num_rows >0){
-        echo "<table><tr><th>ID</th><th>Name</th></tr>";
-        //output data of each row
-        while($row = $result->fetch_assoc()){
-            echo "<tr><td>".$row["id"]."</td><td>".$row["firstname"]. " ".$row["lastname"]."</td></tr>";
-        }
-        echo "</table>";
+    if($conn->query($sql) === TRUE){
+        echo "Record deleted successfully";
     }else{
-        echo "0 results";
+        echo "Error deleting record: ".$conn->error;
     }
     $conn->close();
 ?>
