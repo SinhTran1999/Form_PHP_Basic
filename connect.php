@@ -11,11 +11,14 @@
         die("Connection failed: ".$conn->connect_error);
     }
     $sql = "INSERT INTO MyGuests(firstname, lastname, email)
-            VALUES('john','Doe','john@example.com')";
+            VALUES('john','Doe','john@example.com');";
+    $sql .= "INSERT INTO MyGuests(firstname, lastname, email)
+            VALUES('Mary','Moe','marry@example.com');";
+    $sql .= "INSERT INTO MyGuests(firstname, lastname, email)
+            VALUES('Julie','Dooley','julie@example.com');";
 
-    if($conn->query($sql) === TRUE){
-        $last_id = $conn->insert_id;
-        echo "New record created successfully. Last inserted ID is: ".$last_id;
+    if($conn->multi_query($sql) === TRUE){
+        echo "New records created successfully";
     }else{
         echo "Error: ".$sql."<br>".$conn->error;
     }
